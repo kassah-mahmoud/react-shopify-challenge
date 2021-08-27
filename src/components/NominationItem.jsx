@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -6,6 +6,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // import CardContent from '@material-ui/core/CardContent';
 import { CardContent, Grid, IconButton, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import MoviesStore from '../store/moviesStore';
+import actionsTypes from '../store/actionsTypes';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,17 +21,28 @@ const useStyles = makeStyles(() => ({
 
 function NominationItem({ movie }) {
   const classes = useStyles();
+  const { dispatch } = useContext(MoviesStore);
+  function deleteFromNominate() {
+    dispatch({
+      type: actionsTypes.REMOVE_FROM_NOMINATION,
+      payload: movie.imdbID,
+    });
+  }
   return (
     <Card className={classes.root}>
       <Grid container>
         <Grid item xs={8}>
           <CardContent>
             <Typography component="h6">{movie.Title}</Typography>
-            <Typography variant="subtitle1" color="textSecondary">
+            {/* <Typography variant="subtitle1" color="textSecondary">
               {movie.Year}
-            </Typography>
+            </Typography> */}
           </CardContent>
-          <IconButton aria-label="delete" className={classes.margin}>
+          <IconButton
+            aria-label="delete"
+            className={classes.margin}
+            onClick={deleteFromNominate}
+          >
             <DeleteIcon fontSize="large" />
           </IconButton>
         </Grid>
@@ -49,9 +62,9 @@ function NominationItem({ movie }) {
 NominationItem.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
-    Year: PropTypes.string.isRequired,
+    // Year: PropTypes.string.isRequired,
     imdbID: PropTypes.string.isRequired,
-    Type: PropTypes.string.isRequired,
+    // Type: PropTypes.string.isRequired,
     Poster: PropTypes.string.isRequired,
   }),
 };
