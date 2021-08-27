@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,7 @@ function SearchInput({ setMovie }) {
   function handleSubmit(e) {
     e.preventDefault();
     setMovie(input);
+    setInput("");
   }
   return (
     <div>
@@ -37,6 +39,14 @@ function SearchInput({ setMovie }) {
           onChange={handleInput}
           value={input}
         />
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          style={{ width: "100px" }}
+        >
+          Search
+        </Button>
       </form>
     </div>
   );
