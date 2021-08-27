@@ -24,7 +24,7 @@ function reducer(state, action) {
       return {
         ...state,
         nominationList: state.nominationList?.filter(
-          (movie) => movie.id !== action.payload
+          (movie) => movie.imdbID !== action.payload
         ),
       };
     default:
