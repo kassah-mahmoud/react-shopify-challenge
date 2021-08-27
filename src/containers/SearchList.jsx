@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
-import SearchInput from "../components/SearchInput";
-import ResultList from "../components/ResultList";
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core';
+import SearchInput from '../components/SearchInput';
+import ResultList from '../components/ResultList';
 
 const useStyles = makeStyles(() => ({
   div: {
-    display: "flex",
+    display: 'flex',
   },
 }));
 function SearchList() {
   const classes = useStyles();
-  const [movie, setMovie] = useState("");
+  const [movie, setMovie] = useState('');
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
@@ -32,4 +32,3 @@ function SearchList() {
 }
 
 export default SearchList;
-

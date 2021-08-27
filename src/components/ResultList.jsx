@@ -1,12 +1,12 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import MovieCard from "./MovieCard";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import MovieCard from './MovieCard';
 
 const useStyles = makeStyles(() => ({
   div: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexWrap: 'wrap',
   },
 }));
 export default function ResultList({ movieList }) {
@@ -26,5 +26,5 @@ ResultList.propTypes = {
 };
 
 ResultList.defaultProps = {
-  movieList: "",
+  movieList: '',
 };

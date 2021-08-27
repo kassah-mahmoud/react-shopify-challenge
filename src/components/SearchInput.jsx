@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
+    '& > *': {
       margin: theme.spacing(1),
-      width: "70ch",
+      width: '70ch',
     },
   },
 }));
 function SearchInput({ setMovie }) {
   const classes = useStyles();
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   function handleInput(e) {
     const inputValue = e.target.value;
     setInput(inputValue);
@@ -22,7 +22,7 @@ function SearchInput({ setMovie }) {
   function handleSubmit(e) {
     e.preventDefault();
     setMovie(input);
-    setInput("");
+    setInput('');
   }
   return (
     <div>
@@ -43,7 +43,7 @@ function SearchInput({ setMovie }) {
           variant="contained"
           color="primary"
           type="submit"
-          style={{ width: "100px" }}
+          style={{ width: '100px' }}
         >
           Search
         </Button>
@@ -58,6 +58,5 @@ SearchInput.propTypes = {
   setMovie: PropTypes.func,
 };
 SearchInput.defaultProps = {
-  setMovie: "",
+  setMovie: '',
 };
-
