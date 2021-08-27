@@ -60,3 +60,4 @@ SearchInput.propTypes = {
 SearchInput.defaultProps = {
   setMovie: "",
 };
+
