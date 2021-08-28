@@ -31,8 +31,8 @@ const useStyles = makeStyles({
 function MovieCard({ imdbID, Poster, Title }) {
   const classes = useStyles();
   const { state, dispatch } = useContext(MoviesStore);
+  const imdbIDs = state.nominationList.map((m) => m.imdbID);
   function handleNominate() {
-    const imdbIDs = state.nominationList.map((m) => m.imdbID);
     if (!imdbIDs.includes(imdbID)) {
       dispatch({
         type: actionsTypes.ADD_TO_NOMINATION,
@@ -67,7 +67,7 @@ function MovieCard({ imdbID, Poster, Title }) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary" onClick={handleNominate}>
-          Nominate
+          {!imdbIDs.includes(imdbID) ? 'nominate' : 'remove'}
         </Button>
       </CardActions>
     </Card>
