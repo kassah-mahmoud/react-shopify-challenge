@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import MoviesStore from '../store/moviesStore';
+import actionsTypes from '../store/actionsTypes';
 
 const useStyles = makeStyles({
   root: {
@@ -26,8 +28,23 @@ const useStyles = makeStyles({
     },
   },
 });
-function MovieCard({ movie }) {
+function MovieCard({ imdbID, Poster, Title }) {
   const classes = useStyles();
+  const { state, dispatch } = useContext(MoviesStore);
+  function handleNominate() {
+    const imdbIDs = state.nominationList.map((m) => m.imdbID);
+    if (!imdbIDs.includes(imdbID)) {
+      dispatch({
+        type: actionsTypes.ADD_TO_NOMINATION,
+        payload: { Poster, Title, imdbID },
+      });
+    } else {
+      dispatch({
+        type: actionsTypes.REMOVE_FROM_NOMINATION,
+        payload: imdbID,
+      });
+    }
+  }
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -35,12 +52,12 @@ function MovieCard({ movie }) {
           component="img"
           alt="Contemplative Reptile"
           // height="140"
-          image={`${movie.Poster}`}
+          image={`${Poster}`}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {movie.Title}
+            {Title}
           </Typography>
           {/* <Typography variant="body2" color="textSecondary" component="p">
         Lizards are a widespread group of squamate reptiles, with over 6,000
@@ -49,7 +66,7 @@ function MovieCard({ movie }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleNominate}>
           Nominate
         </Button>
       </CardActions>
@@ -59,9 +76,13 @@ function MovieCard({ movie }) {
 
 export default MovieCard;
 MovieCard.propTypes = {
-  movie: PropTypes.func,
+  Poster: PropTypes.string,
+  Title: PropTypes.string,
+  imdbID: PropTypes.string,
 };
 
 MovieCard.defaultProps = {
-  movie: '',
+  Poster: '',
+  Title: '',
+  imdbID: '',
 };

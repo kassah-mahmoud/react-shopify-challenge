@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+
 import MovieCard from './MovieCard';
+import MoviesStore from '../store/moviesStore';
 
 const useStyles = makeStyles(() => ({
   div: {
@@ -9,22 +10,24 @@ const useStyles = makeStyles(() => ({
     flexWrap: 'wrap',
   },
 }));
-export default function ResultList({ movieList }) {
+export default function ResultList() {
   const classes = useStyles();
+  const { state } = useContext(MoviesStore);
+
   return (
     <div className={classes.div}>
-      {movieList ? (
-        movieList.map((movie) => <MovieCard key={movie.imdbID} movie={movie} />)
+      {!state.isLoading ? (
+        state.movies.map((movie) => (
+          <MovieCard
+            key={movie.imdbID}
+            imdbID={movie.imdbID}
+            Title={movie.Title}
+            Poster={movie.Poster}
+          />
+        ))
       ) : (
         <p>Loading</p>
       )}
     </div>
   );
 }
-ResultList.propTypes = {
-  movieList: PropTypes.func,
-};
-
-ResultList.defaultProps = {
-  movieList: '',
-};
