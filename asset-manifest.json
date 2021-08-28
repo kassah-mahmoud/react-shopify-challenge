@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-shopify-challenge/static/css/main.4b42911f.chunk.css",
+    "main.js": "/react-shopify-challenge/static/js/main.04361db4.chunk.js",
+    "main.js.map": "/react-shopify-challenge/static/js/main.04361db4.chunk.js.map",
+    "runtime-main.js": "/react-shopify-challenge/static/js/runtime-main.b92f5047.js",
+    "runtime-main.js.map": "/react-shopify-challenge/static/js/runtime-main.b92f5047.js.map",
+    "static/js/2.edefd0ae.chunk.js": "/react-shopify-challenge/static/js/2.edefd0ae.chunk.js",
+    "static/js/2.edefd0ae.chunk.js.map": "/react-shopify-challenge/static/js/2.edefd0ae.chunk.js.map",
+    "index.html": "/react-shopify-challenge/index.html",
+    "static/css/main.4b42911f.chunk.css.map": "/react-shopify-challenge/static/css/main.4b42911f.chunk.css.map",
+    "static/js/2.edefd0ae.chunk.js.LICENSE.txt": "/react-shopify-challenge/static/js/2.edefd0ae.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b92f5047.js",
+    "static/js/2.edefd0ae.chunk.js",
+    "static/css/main.4b42911f.chunk.css",
+    "static/js/main.04361db4.chunk.js"
+  ]
+}

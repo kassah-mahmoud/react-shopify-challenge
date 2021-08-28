@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,iBACI,UAAW,CACX,YAAa,CACb,6CAAgD,CAChD,aAAS,CAAT,QACJ","file":"main.4b42911f.chunk.css","sourcesContent":[".skeleton-loader {\n    width: 100%;\n    display: grid;\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n    gap: 15px;\n}"]}
