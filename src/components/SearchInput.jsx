@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
+import debounce from 'lodash/debounce';
+import useFetch from '../hooks/useFetch';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,18 +13,31 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-function SearchInput({ setMovie }) {
+function SearchInput() {
   const classes = useStyles();
+
   const [input, setInput] = useState('');
   function handleInput(e) {
-    const inputValue = e.target.value;
-    setInput(inputValue);
+    setInput(e.target.value);
   }
+
+  const searchMovie = useFetch(input);
+
   function handleSubmit(e) {
     e.preventDefault();
-    setMovie(input);
-    setInput('');
+    searchMovie();
   }
+
+  useEffect(() => {
+    const fetchSearchResults = debounce(() => {
+      if (!input) return;
+      searchMovie();
+    }, 500);
+
+    fetchSearchResults();
+    return () => fetchSearchResults.cancel();
+  }, [input, searchMovie]);
+
   return (
     <div>
       <form
@@ -53,10 +67,3 @@ function SearchInput({ setMovie }) {
 }
 
 export default SearchInput;
-
-SearchInput.propTypes = {
-  setMovie: PropTypes.func,
-};
-SearchInput.defaultProps = {
-  setMovie: '',
-};

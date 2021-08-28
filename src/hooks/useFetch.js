@@ -1,4 +1,4 @@
-import { useEffect, useContext, useCallback } from 'react';
+import { useContext, useCallback } from 'react';
 import axios from 'axios';
 import MoviesStore from '../store/moviesStore';
 import actionsTypes from '../store/actionsTypes';
@@ -31,9 +31,9 @@ function useFetch(searchWord) {
       .finally(() => setLoading(false));
   }, [dispatch, searchWord]);
 
-  useEffect(() => {
-    searchMovies();
-  }, [searchMovies]);
+  // useEffect(() => {
+  //   searchMovies();
+  // }, [searchMovies]);
   return searchMovies;
 }
 
