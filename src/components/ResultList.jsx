@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
+import SkeletonLoader from './SkeletonLoader';
+
 import MovieCard from './MovieCard';
 import MoviesStore from '../store/moviesStore';
 
 const useStyles = makeStyles(() => ({
   div: {
     display: 'flex',
+    width: '100%',
     flexWrap: 'wrap',
   },
 }));
@@ -26,7 +29,7 @@ export default function ResultList() {
           />
         ))
       ) : (
-        <p>Loading</p>
+        <SkeletonLoader />
       )}
     </div>
   );
